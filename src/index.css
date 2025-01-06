@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* hide scrollbar but keep functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Modal styles */
+.modal {
+  max-width: 32rem;
+  margin: auto;
+}
+
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* Custom style for the confirm button */
+.custom-confirm-button {
+  background-color: #028a88; /* Teal */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.custom-confirm-button:hover {
+  background-color: #026a68; /* Darker teal */
+}
+
+/* Custom style for the cancel button */
+.custom-cancel-button {
+  background-color: #ec4c9c; /* Pink */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.custom-cancel-button:hover {
+  background-color: #d93b8a; /* Darker pink */
+}
+
