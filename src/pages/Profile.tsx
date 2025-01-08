@@ -6,30 +6,28 @@ import { useAuth} from '../contexts/AuthContext';
 import { db } from '../lib/firebase'; 
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import EditProfileModal from '../components/EditProfileModal'; 
-import { getUpcomingAppointments, getServices } from '../services/bookings'; // Import the function
-import { BookingDetails } from '../types/index'; // Import the Appointment interface
-import { ToastContainer, toast } from 'react-toastify'; // Import ToastContainer and toast
-import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for toast notifications
-import Swal from 'sweetalert2'; // Import SweetAlert2 for confirmation dialog
-import { listenToAppointments } from '../utils/firebaseUtils'//firebaseUtils";
+import { getUpcomingAppointments, getServices } from '../services/bookings'; 
+import { BookingDetails } from '../types/index'; 
+import { ToastContainer, toast } from 'react-toastify'; 
+import 'react-toastify/dist/ReactToastify.css'; 
+import Swal from 'sweetalert2'; 
+import { listenToAppointments } from '../utils/firebaseUtils';
 import { getPastAppointments } from '../services/bookings'; 
-import { getSpecialOffers, SpecialOffer } from '../services/offers'; // Import the function to fetch special offers
+import { getSpecialOffers, SpecialOffer } from '../services/offers'; 
 
 
 export function Profile() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true); // State for sidebar visibility
-  const loyaltyPoints = 5; // Example loyalty points
-  const maxPoints = 30; // Maximum points for the progress bar
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true); 
+  const loyaltyPoints = 3; 
+  const maxPoints = 30; 
   const { currentUser } = useAuth();
   const [userData, setUserData] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [upcomingAppointments, setUpcomingAppointments] = useState<any[]>([]); // Use Appointment type
-  const [services, setServices] = useState<any[]>([]); // Use appropriate type for services
-  //const [pastAppointments, setPastAppointments] = useState<BookingDetails[]>([]);
+  const [upcomingAppointments, setUpcomingAppointments] = useState<any[]>([]); 
+  const [services, setServices] = useState<any[]>([]); 
   const [specialOffers, setSpecialOffers] = useState<SpecialOffer[]>([]);
-  //const [rawPastAppointments, setRawPastAppointments] = useState([]);
   const [enrichedPastAppointments, setEnrichedPastAppointments] = useState<BookingDetails[]>([]);
-  const [sorteCriteria, setSorteCriteria] = useState<string>('date'); // State for sorting criteria
+  const [sorteCriteria, setSorteCriteria] = useState<string>('date'); 
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -108,7 +106,7 @@ export function Profile() {
   const sortedPastAppointments = [...enrichedPastAppointments].sort((a, b) => {
     if (sorteCriteria === 'date') {
       const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0; // Default to 0 if undefined
-      const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0; // Default to 0 if undefined
+      const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0; 
       return dateB - dateA; // Sort in descending order
     } else if (sorteCriteria === 'serviceType') {
       return a.serviceName.localeCompare(b.serviceName);
@@ -149,10 +147,10 @@ export function Profile() {
         confirmButton: "custom-confirm-button", // Class for the confirm button
         cancelButton: "custom-cancel-button", // Class for the cancel button
       },
-      buttonsStyling: true, // Enables custom button styling
+      buttonsStyling: true, 
     });
 
-    if (!isConfirmed) return; // If not confirmed, exit the function
+    if (!isConfirmed) return; 
 
     try {
       // Reference the document in Firestore
@@ -209,12 +207,12 @@ export function Profile() {
           </div>
         </div>
       `,
-      showCancelButton: true, // Adds a cancel button
+      showCancelButton: true, 
       confirmButtonText: "Reschedule",
       cancelButtonText: "Cancel",
       customClass: {
-        confirmButton: "custom-confirm-button", // Class for the confirm button
-        cancelButton: "custom-cancel-button", // Class for the cancel button
+        confirmButton: "custom-confirm-button", 
+        cancelButton: "custom-cancel-button",
       },
       buttonsStyling: true, // Enables custom button styling
       focusConfirm: false,
@@ -295,21 +293,20 @@ export function Profile() {
 
   // Create a mapping of serviceId to service details
   const serviceMap = services.reduce((acc: { [key: string]: any }, service: any) => {
-    acc[service.serviceId] = service; // Store the entire service object
+    acc[service.serviceId] = service; 
     return acc;
   }, {});
 
-
-
-
-
-
   return (
-    <div className="min-h-screen flex bg-[#f5fef9]">
-      {/* Add ToastContainer to  component */}
+    <div className="min-h-screen flex flex-col lg:flex-row bg-[#f5fef9]">
+      {/* ToastContainer to  component */}
       <ToastContainer />
       {/* Sidebar with Glass Effect */}
-      <div className={`bg-[#ffffff] bg-opacity-70 backdrop-blur-lg shadow-lg rounded-lg p-4 transition-transform duration-300 ${isSidebarOpen ? 'w-1/4' : 'w-16'} h-full`}>
+      <div
+        className={`bg-[#ffffff] bg-opacity-10 backdrop-blur-lg shadow-lg rounded-lg p-4 transition-transform duration-300 ${
+          isSidebarOpen ? 'w-full lg:w-1/4' : 'w-16'
+        } h-auto lg:h-full`}
+      >
         <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="mb-4">
           {isSidebarOpen ? <FaChevronLeft /> : <FaChevronRight />}
         </button>
@@ -398,10 +395,14 @@ export function Profile() {
       </div>
 
       {/* Main Content */}
-      <div className={`flex-1 p-6 ${isSidebarOpen ? 'ml-0' : 'ml-16'} transition-all duration-300`}>
+      <div
+        className={`flex-1 p-6 ${
+          isSidebarOpen ? 'ml-0' : 'ml-16'
+        } transition-all duration-300`}
+      >
         {/* Center Column: Appointments */}
         <h2 className="text-xl font-bold mb-4 text-[#ec4c9c]">Upcoming Appointments</h2>
-        <div className="space-y-4">
+        <div className="space-y-4 grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         
          {upcomingAppointments.length > 0 ? (
           upcomingAppointments.map((appointment, index) => {
@@ -475,7 +476,7 @@ export function Profile() {
       </div>
 
       {/* Right Column: Booking History */}
-      <div className="w-1/4 p-6 bg-[#ffffff] shadow-lg rounded-lg">
+      <div className="w-full lg:w-1/4 p-6 bg-[#ffffff] bg-opacity-10 backdrop-blur-lg shadow-lg rounded-lg">
         <h2 className="text-xl font-bold mb-4 text-[#ec4c9c]">Booking History</h2>
         
         {/* Sort Options */}
