@@ -41,23 +41,6 @@ export function Home() {
 
   return (
     <div className="min-h-screen">
-      {/* Navbar 
-      <nav className="bg-white shadow-md flex justify-between items-center p-4">
-        <div className="text-xl font-bold">Nath Nails</div>
-        <button onClick={() => setIsSidebarOpen(true)} className="md:hidden">
-          <span className="material-icons">menu</span>
-        </button>
-        <div className="hidden md:flex space-x-4">
-          <Link to="/" className="hover:text-pink-500">Home</Link>
-          <Link to="/services" className="hover:text-pink-500">Services</Link>
-          <Link to="/profile" className="hover:text-pink-500">About</Link>
-          <Link to="/login" className="hover:text-pink-500">Contact</Link>
-        </div>
-      </nav>
-
-      {/* Sidebar 
-      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />*/}
-
       {/* Hero Section */}
       <div 
         className="h-[600px] bg-cover bg-center relative"
@@ -117,14 +100,16 @@ export function Home() {
                 </div>
               ))}
             </div>
-            <div className="mt-8 text-center">
-              <Link
-                to="/services"
-                className="text-pink-500 font-medium hover:text-pink-600"
-              >
-                View All Services →
-              </Link>
-            </div>
+            
+              <div className="mt-8 text-center">
+                <Link
+                  to="/services"
+                  className="text-pink-500 font-medium hover:text-pink-600"
+                >
+                  View All Services →
+                </Link>
+              </div>
+            
           </div>
         </div>
       </div>

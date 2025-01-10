@@ -1,9 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { services as staticServices } from '../data/services';
+import { useState, useEffect } from 'react';
+//import { services as staticServices } from '../data/services';
 import { ServiceCard } from '../components/ServiceCard';
 import { useAuth } from '../contexts/AuthContext';
 import { doc, getDoc, updateDoc, collection, getDocs, setDoc } from 'firebase/firestore';
 import { db } from '../lib/firebase';
+import SwiperCore from 'swiper';
+import Pagination from 'swiper';
+import Navigation from 'swiper';
+import 'swiper/swiper-bundle.css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+SwiperCore.use([Pagination, Navigation]);
 
 export function Services() {
   const { currentUser } = useAuth();
@@ -64,8 +72,8 @@ export function Services() {
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-7xl mx-auto px-4">
-        <h1 className="text-4xl font-bold text-center mb-12">Our Services</h1>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <h1 className="text-4xl font-bold text-center mb-8 sm:text-3xl">Our Services</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {services.map((service, index) => (
             <ServiceCard
               key={`${service.serviceId}-${index}`}
