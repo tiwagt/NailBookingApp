@@ -7,12 +7,12 @@ import { useAuth } from '../contexts/AuthContext';
 export function Navbar() {
   const { currentUser } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
-  const closeMenuAndNavigate = (path) => {
+  /*const closeMenuAndNavigate = (path) => {
     setMobileMenuOpen(false); // Close the menu
     navigate(path); // Navigate to the new page
-  };
+  };*/
 
   return (
     <nav className="bg-white shadow-md">
@@ -98,7 +98,7 @@ export function Navbar() {
             {currentUser ? (
               <>
                  <button
-              onClick={() => closeMenuAndNavigate("/")}
+              to="/"
               className="block text-gray-700 hover:text-pink-500 w-full text-left"
             >
               Home
