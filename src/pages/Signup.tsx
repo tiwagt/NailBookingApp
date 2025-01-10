@@ -154,7 +154,7 @@ export function Signup() {
               value={city}
               onChange={(e) => setCity(e.target.value)}
               className="appearance-none rounded-md relative block w-full px-3 py-2 border-0 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent sm:text-sm"
-              required
+              //required
               disabled={!country}
             >
               <option value="">Select City</option>

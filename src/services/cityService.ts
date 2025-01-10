@@ -4,7 +4,7 @@ const GEO_NAMES_USERNAME = 'gracet';
 
 export const fetchCitiesByCountry = async (countryCode: string) => {
   try {
-    const response = await axios.get(`https://api.geonames.org/searchJSON?country=${countryCode}&maxRows=100&username=${GEO_NAMES_USERNAME}`);
+    const response = await axios.get(`http://api.geonames.org/searchJSON?country=${countryCode}&maxRows=100&username=${GEO_NAMES_USERNAME}`);
     return response.data.geonames.map((city: any) => city.name);
   } catch (error) {
     if (axios.isAxiosError(error)) {
