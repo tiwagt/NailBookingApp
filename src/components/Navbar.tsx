@@ -107,7 +107,7 @@ export function Navbar() {
                 <Link
                   to="/book"
                   className="block bg-pink-500 text-white px-4 py-2 rounded-md text-center hover:bg-pink-600"
-                  onClick={handleLinkClick}
+                  
                 >
                   Book Now
                 </Link>
@@ -116,7 +116,7 @@ export function Navbar() {
               <Link
                 to="/login"
                 className="block bg-pink-500 text-white px-4 py-2 rounded-md text-center hover:bg-pink-600"
-                onClick={handleLinkClick}
+                
               >
                 Sign In
               </Link>
