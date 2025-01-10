@@ -90,43 +90,54 @@ export function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-white shadow-md">
-          <div className="px-4 pt-4 pb-4 space-y-4">
-            <Link to="/" className="block text-gray-700 hover:text-pink-500">Home</Link>
-            <Link to="/services" className="block text-gray-700 hover:text-pink-500">Services</Link>
-            {currentUser ? (
-              <>
-                 <button
-              to="/"
-              className="block text-gray-700 hover:text-pink-500 w-full text-left"
-            >
-              Home
-            </button>
-
-                <Link
-                  to="/book"
-                  className="block bg-pink-500 text-white px-4 py-2 rounded-md text-center hover:bg-pink-600"
-                  
-                >
-                  Book Now
-                </Link>
-              </>
-            ) : (
+      
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-white shadow-md">
+            <div className="px-4 pt-4 pb-4 space-y-4">
               <Link
-                to="/login"
-                className="block bg-pink-500 text-white px-4 py-2 rounded-md text-center hover:bg-pink-600"
-                
+                to="/"
+                className="block text-gray-700 hover:text-pink-500"
+                onClick={() => setMobileMenuOpen(false)} // Close menu on click
               >
-                Sign In
+                Home
               </Link>
-            )}
-
-
-
+              <Link
+                to="/services"
+                className="block text-gray-700 hover:text-pink-500"
+                onClick={() => setMobileMenuOpen(false)} 
+              >
+                Services
+              </Link>
+              {currentUser ? (
+                <>
+                  <Link
+                    to="/profile"
+                    className="block text-gray-700 hover:text-pink-500"
+                    onClick={() => setMobileMenuOpen(false)} 
+                  >
+                    Profile
+                  </Link>
+                  <Link
+                    to="/book"
+                    className="block bg-pink-500 text-white px-4 py-2 rounded-md text-center hover:bg-pink-600"
+                    onClick={() => setMobileMenuOpen(false)} 
+                  >
+                    Book Now
+                  </Link>
+                </>
+              ) : (
+                <Link
+                  to="/login"
+                  className="block bg-pink-500 text-white px-4 py-2 rounded-md text-center hover:bg-pink-600"
+                  onClick={() => setMobileMenuOpen(false)} 
+                >
+                  Sign In
+                </Link>
+              )}
+            </div>
           </div>
-        </div>
-      )}
+        )}
+
     </nav>
   );
 }
